@@ -8,65 +8,101 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon, Search, User } from "lucide-react";
 import { format } from "date-fns";
 import {
-  ChartContainer,
-} from "@/components/ui/chart";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer
-} from "recharts";
+  Table,
+  TableHeader,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 
-const mockResults = [
-  {
-    id: 1,
-    device: "Device A",
-    user: "Jane Smith",
-    date: new Date("2025-05-01"),
-    location: "Houston",
-    sampleId: "S-001",
-    summary: "Positive",
-    signal: [10, 15, 22, 35, 45, 40, 38],
-    time: ["0", "5", "10", "15", "20", "25", "30"],
-  },
-  {
-    id: 2,
-    device: "Device B",
-    user: "Mark Jones",
-    date: new Date("2025-05-02"),
-    location: "Dallas",
-    sampleId: "S-002",
-    summary: "Negative",
-    signal: [9, 10, 10, 11, 11, 10, 10],
-    time: ["0", "5", "10", "15", "20", "25", "30"],
-  },
+// Main dashboard mock data with all new columns
+const tableColumns = [
+  "Location",
+  "MasterID (Key)",
+  "Equipment Type",
+  "Sample ID",
+  "SampleDate",
+  "Time",
+  "Sample Type",
+  "Collected by",
+  "ReportedBy",
+  "Sample Volume (mL)",
+  "Comments",
+  "Test type",
+  "Test Value",
+  "Test Value Units",
 ];
 
-// Prepare mock chart data
-function prepareChartData(result: (typeof mockResults)[0]) {
-  return result.time.map((t, i) => ({
-    time: t,
-    signal: result.signal[i],
-  }));
-}
+// Sample representative mock data
+const mockTableRows = [
+  {
+    Location: "Houston",
+    "MasterID (Key)": "M10001",
+    "Equipment Type": "Handheld Gen1",
+    "Sample ID": "S-001",
+    SampleDate: "2025-05-01",
+    Time: "09:30",
+    "Sample Type": "Water",
+    "Collected by": "Jane Smith",
+    ReportedBy: "Supervisor A",
+    "Sample Volume (mL)": 50,
+    Comments: "No issues",
+    "Test type": "Pathogen A",
+    "Test Value": 13.5,
+    "Test Value Units": "CFU/mL",
+  },
+  {
+    Location: "Dallas",
+    "MasterID (Key)": "M10002",
+    "Equipment Type": "Handheld Gen2",
+    "Sample ID": "S-002",
+    SampleDate: "2025-05-02",
+    Time: "15:20",
+    "Sample Type": "Soil",
+    "Collected by": "Mark Jones",
+    ReportedBy: "Supervisor B",
+    "Sample Volume (mL)": 30,
+    Comments: "Cloudy sample",
+    "Test type": "Pathogen B",
+    "Test Value": 2,
+    "Test Value Units": "CFU/g",
+  },
+  {
+    Location: "San Antonio",
+    "MasterID (Key)": "M10003",
+    "Equipment Type": "Handheld Gen1",
+    "Sample ID": "S-003",
+    SampleDate: "2025-05-03",
+    Time: "12:15",
+    "Sample Type": "Oil",
+    "Collected by": "Alex Lee",
+    ReportedBy: "Supervisor A",
+    "Sample Volume (mL)": 60,
+    Comments: "",
+    "Test type": "Pathogen C",
+    "Test Value": 0,
+    "Test Value Units": "CFU/mL",
+  },
+];
 
 export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [date, setDate] = useState<Date | undefined>();
-  const [selectedResult, setSelectedResult] = useState(mockResults[0]);
 
-  // Filtered results
-  const filtered = mockResults.filter(r =>
-    (!search || r.user.toLowerCase().includes(search.toLowerCase()) || r.device.toLowerCase().includes(search.toLowerCase())) &&
-    (!date || format(r.date, "yyyy-MM-dd") === format(date, "yyyy-MM-dd"))
+  // Simple filter for table rows demo (location, sample id, or collected/Reported by)
+  const filteredRows = mockTableRows.filter((row) =>
+    (!search ||
+      row.Location.toLowerCase().includes(search.toLowerCase()) ||
+      row["Sample ID"].toLowerCase().includes(search.toLowerCase()) ||
+      row["Collected by"].toLowerCase().includes(search.toLowerCase()) ||
+      row.ReportedBy.toLowerCase().includes(search.toLowerCase())) &&
+    (!date || row.SampleDate === format(date, "yyyy-MM-dd"))
   );
 
   return (
-    <div className="max-w-6xl mx-auto py-8 px-4">
+    <div className="max-w-7xl mx-auto py-8 px-4">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <User className="inline w-6 h-6" /> Test Results Dashboard
       </h1>
@@ -78,7 +114,7 @@ export default function Dashboard() {
           <div className="flex gap-4 flex-wrap">
             <div className="flex items-center gap-2">
               <Input
-                placeholder="Search by user or device"
+                placeholder="Search by location, ID, or user"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 className="max-w-xs"
@@ -105,69 +141,53 @@ export default function Dashboard() {
                 />
               </PopoverContent>
             </Popover>
-            <Button variant="ghost" onClick={() => { setDate(undefined); setSearch(""); }}>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                setDate(undefined);
+                setSearch("");
+              }}
+            >
               Clear Filters
             </Button>
           </div>
         </CardContent>
       </Card>
-
-      <Tabs defaultValue={filtered[0]?.id.toString() || ""} onValueChange={v => {
-        const found = mockResults.find(r => r.id.toString() === v);
-        if (found) setSelectedResult(found);
-      }}>
-        <TabsList>
-          {filtered.map(result => (
-            <TabsTrigger key={result.id} value={result.id.toString()}>
-              {result.device} - {result.user}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {filtered.map(result => (
-          <TabsContent key={result.id} value={result.id.toString()}>
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  Sample {result.sampleId} &mdash; {format(result.date, "PPP")}
-                </CardTitle>
-                <div className="text-muted-foreground text-sm">
-                  Device: {result.device} | User: {result.user} | Location: {result.location}
-                </div>
-                <div className="mt-2 font-semibold">
-                  <span className={`px-2 py-1 rounded ${result.summary === "Positive" ? "bg-red-100 text-red-600" : "bg-green-100 text-green-700"}`}>
-                    {result.summary}
-                  </span>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <h3 className="font-medium mb-2">Signal (Line Graph)</h3>
-                <div className="w-full" style={{ minHeight: 220 }}>
-                  <ResponsiveContainer width="100%" height={220}>
-                    <LineChart data={prepareChartData(result)}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="time" />
-                      <YAxis domain={["auto", "auto"]} />
-                      <Tooltip />
-                      <Line
-                        type="monotone"
-                        dataKey="signal"
-                        stroke={result.summary === "Positive" ? "#dc2626" : "#059669"}
-                        dot
-                        strokeWidth={2}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        ))}
-        {filtered.length === 0 && (
-          <div className="mt-8 text-center text-muted-foreground">
-            No results found for the selected filter.
+      <Card>
+        <CardHeader>
+          <CardTitle>Test Result Records</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  {tableColumns.map((col) => (
+                    <TableHead key={col}>{col}</TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredRows.length > 0 ? (
+                  filteredRows.map((row, idx) => (
+                    <TableRow key={idx}>
+                      {tableColumns.map((col) => (
+                        <TableCell key={col}>{row[col] || ""}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={tableColumns.length} className="text-center text-sm text-muted-foreground">
+                      No results found for the selected filter.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
           </div>
-        )}
-      </Tabs>
+        </CardContent>
+      </Card>
     </div>
   );
 }
