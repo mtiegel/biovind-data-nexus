@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,6 +14,13 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   LineChart,
   Line,
@@ -123,15 +129,20 @@ const lineChartData = graphDataRaw.map(row => {
 export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [date, setDate] = useState<Date | undefined>();
+  const [location, setLocation] = useState<string>("");
 
-  // Filter logic remains, though only one row is present
+  // Get unique locations for the filter dropdown
+  const uniqueLocations = [...new Set(mockTableRows.map(row => row.Location))];
+
+  // Updated filter logic to include location
   const filteredRows = mockTableRows.filter((row) =>
     (!search ||
       row.Location.toLowerCase().includes(search.toLowerCase()) ||
       row["Sample ID"].toLowerCase().includes(search.toLowerCase()) ||
       row["Collected by"].toLowerCase().includes(search.toLowerCase()) ||
       row.ReportedBy.toLowerCase().includes(search.toLowerCase())) &&
-    (!date || row.SampleDate === format(date, "yyyy-MM-dd"))
+    (!date || row.SampleDate === format(date, "yyyy-MM-dd")) &&
+    (!location || row.Location === location)
   );
 
   return (
@@ -187,6 +198,18 @@ export default function Dashboard() {
               />
               <Search className="w-4 h-4 text-muted-foreground" />
             </div>
+            <Select value={location} onValueChange={setLocation}>
+              <SelectTrigger className="w-40">
+                <SelectValue placeholder="Filter by location" />
+              </SelectTrigger>
+              <SelectContent>
+                {uniqueLocations.map((loc) => (
+                  <SelectItem key={loc} value={loc}>
+                    Location {loc}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -212,6 +235,7 @@ export default function Dashboard() {
               onClick={() => {
                 setDate(undefined);
                 setSearch("");
+                setLocation("");
               }}
             >
               Clear Filters
