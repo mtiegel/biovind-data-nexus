@@ -168,14 +168,14 @@ export default function Dashboard() {
                 <YAxis label={{ value: "Value", angle: -90, position: "insideLeft", offset: 10 }} />
                 <Tooltip />
                 <Legend verticalAlign="top" height={36} />
-                <Line type="monotone" dataKey="No DNA 1" stroke="#0066ff" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="No DNA 2" stroke="#00cc66" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="No DNA 3" stroke="#ff9900" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="No DNA 4" stroke="#ff3366" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="PA 1" stroke="#cc00ff" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="PA 2" stroke="#3366ff" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="PA 3" stroke="#ff6600" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="PA 4" stroke="#00cccc" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="No DNA 1" stroke="#e74c3c" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 2" stroke="#2ecc71" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 3" stroke="#f39c12" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 4" stroke="#9b59b6" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 1" stroke="#3498db" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 2" stroke="#e67e22" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 3" stroke="#1abc9c" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 4" stroke="#f1c40f" strokeWidth={3} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
