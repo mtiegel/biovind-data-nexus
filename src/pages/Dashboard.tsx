@@ -173,14 +173,14 @@ export default function Dashboard() {
                 />
                 <Tooltip />
                 <Legend verticalAlign="top" height={36} />
-                <Line type="monotone" dataKey="No DNA 1" stroke="#ff1744" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 2" stroke="#00e676" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 3" stroke="#ff9100" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 4" stroke="#e91e63" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 1" stroke="#2196f3" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 2" stroke="#ff5722" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 3" stroke="#00bcd4" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 4" stroke="#ffeb3b" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 1" stroke="#ff0040" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 2" stroke="#00ff40" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 3" stroke="#ff8000" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 4" stroke="#ff0080" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 1" stroke="#0080ff" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 2" stroke="#ff4000" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 3" stroke="#00ffff" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 4" stroke="#ffff00" strokeWidth={3} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
