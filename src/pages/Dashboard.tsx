@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -71,7 +70,7 @@ const mockTableRows = [
   }
 ];
 
-// ---- Time Series Graph Data - FROM USER ----
+// ---- Updated Time Series Graph Data ----
 const graphHeaders = [
   "Time", "No DNA 1", "No DNA 2", "No DNA 3", "No DNA 4", "PA 1", "PA 2", "PA 3", "PA 4"
 ];
@@ -173,14 +172,14 @@ export default function Dashboard() {
                 />
                 <Tooltip />
                 <Legend verticalAlign="top" height={36} />
-                <Line type="monotone" dataKey="No DNA 1" stroke="#ff0040" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 2" stroke="#00ff40" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 3" stroke="#ff8000" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 4" stroke="#ff0080" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 1" stroke="#0080ff" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 2" stroke="#ff4000" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 3" stroke="#00ffff" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 4" stroke="#ffff00" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 1" stroke="#e11d48" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 2" stroke="#7c3aed" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 3" stroke="#059669" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 4" stroke="#dc2626" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 1" stroke="#2563eb" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 2" stroke="#ea580c" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 3" stroke="#0891b2" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 4" stroke="#ca8a04" strokeWidth={3} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
