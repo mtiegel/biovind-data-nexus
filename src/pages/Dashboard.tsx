@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -172,14 +173,14 @@ export default function Dashboard() {
                 />
                 <Tooltip />
                 <Legend verticalAlign="top" height={36} />
-                <Line type="monotone" dataKey="No DNA 1" stroke="#1e40af" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 2" stroke="#3b82f6" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 3" stroke="#60a5fa" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="No DNA 4" stroke="#93c5fd" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 1" stroke="#1d4ed8" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 2" stroke="#2563eb" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 3" stroke="#3b82f6" strokeWidth={3} dot={false} />
-                <Line type="monotone" dataKey="PA 4" stroke="#6366f1" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 1" stroke="#e11d48" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 2" stroke="#7c3aed" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 3" stroke="#059669" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="No DNA 4" stroke="#dc2626" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 1" stroke="#2563eb" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 2" stroke="#ea580c" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 3" stroke="#0891b2" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="PA 4" stroke="#ca8a04" strokeWidth={3} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
