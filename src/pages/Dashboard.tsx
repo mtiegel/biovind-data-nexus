@@ -70,6 +70,9 @@ const mockTableRows = [
   }
 ];
 
+// Convert the new data to chart format with headers
+const newGraphHeaders = ["Time","Ba1","Ba2","Ba3","Yp1","Yp2","Yp3","Yp4","Ft","CbA","CbB","Bru","Ric","Pox","Bt","Sa","Ba","Yp","CbA","IPC","NTC"];
+
 // Updated time series data with all 20 columns
 const newGraphData = [
   [7,90,42,18,37,46,21,29,53,70,30,101,41,20,26,37,65,44,55,184,58],
@@ -188,9 +191,7 @@ const newGraphData = [
   [798,79,43,18,36,43,20,29,52,59,30,89,40,19,25,37,66,47,57,172,60],
 ];
 
-// Convert the new data to chart format with headers
-const newGraphHeaders = ["Time","Ba1","Ba2","Ba3","Yp1","Yp2","Yp3","Yp4","Ft","CbA","CbB","Bru","Ric","Pox","Bt","Sa","Ba","Yp","CbA","IPC","NTC"];
-
+// Map the newGraphData arrays to objects with keys from newGraphHeaders
 const lineChartData = newGraphData.map(row => {
   const obj: Record<string, number> = {};
   newGraphHeaders.forEach((header, i) => {
