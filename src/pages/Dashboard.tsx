@@ -30,7 +30,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
+  ReferenceLine
 } from "recharts";
 
 // Table columns for Test Result Records
@@ -372,7 +373,7 @@ export default function Dashboard() {
       {/* --- Timeseries Chart --- */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Time Series Sample Values</CardTitle>
+          <CardTitle>V280 - 06/24/25</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="w-full h-96">
@@ -390,6 +391,7 @@ export default function Dashboard() {
                 />
                 <Tooltip />
                 <Legend verticalAlign="top" height={36} />
+                <ReferenceLine x={966} stroke="red" strokeWidth={2} />
                 <Line type="monotone" dataKey="Ba1" stroke="#e11d48" strokeWidth={2} dot={false} />
                 <Line type="monotone" dataKey="Ba2" stroke="#7c3aed" strokeWidth={2} dot={false} />
                 <Line type="monotone" dataKey="Ba3" stroke="#059669" strokeWidth={2} dot={false} />
