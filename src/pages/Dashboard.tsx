@@ -373,7 +373,7 @@ export default function Dashboard() {
       {/* --- Timeseries Chart --- */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Updated - Positive Control Test - PDR - 06/25/2025</CardTitle>
+          <CardTitle>Updated - Positive Control Test - PDR - June 25, 2025</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="w-full h-96">
