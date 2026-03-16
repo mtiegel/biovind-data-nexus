@@ -1,4 +1,4 @@
-export const newGraphHeaders = ["Time","Ba1","Ba2","Ba3","Yp1","Yp2","Yp3","Yp4","Ft","CbA","CbB","Bru","Ric","Pox","Bt","Sa","Ba","Yp","CbA2","IPC","NTC"];
+export const newGraphHeaders = ["Time","SRB","APB","Ba3","Yp1","Yp2","Yp3","Yp4","Ft","CbA","CbB","Bru","Ric","Pox","Bt","Sa","Ba","Yp","CbA2","IPC","NTC"];
 
 export const newGraphData = [
   [7,90,42,18,37,46,21,29,53,70,30,101,41,20,26,37,65,44,55,184,58],
