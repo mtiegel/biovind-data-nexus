@@ -111,7 +111,7 @@ export default function Dashboard() {
       {/* --- Timeseries Chart --- */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Chevron 3/2/25 - Sample 1</CardTitle>
+          <CardTitle>AMPP - Sample 1</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="w-full h-96">
